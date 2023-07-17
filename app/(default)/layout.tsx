@@ -27,7 +27,7 @@ export default function DefaultLayout({
       <main className="grow">{children}</main>
 
       <Footer />
-      <p className="w-full text-center my-3 text-gray-800">
+      <p className="w-full text-center my-3 text-gray-600">
         Developed by{" "}
         <Link
           href="https://www.linkedin.com/in/zineddine-benkhaled-b9b1a8195/"
