@@ -20,7 +20,7 @@
 }
 
 .form-switch input[type="checkbox"]:checked+label {
-    @apply bg-blue-600;
+    @apply bg-green-600;
 }
 
 .form-switch input[type="checkbox"]:checked+label>span:first-child {

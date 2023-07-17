@@ -29,7 +29,7 @@ export default function SignIn() {
                 <div className="w-full px-3">
                   <div className="flex justify-between">
                     <label className="block text-gray-800 text-sm font-medium mb-1" htmlFor="password">Password</label>
-                    <Link href="/reset-password" className="text-sm font-medium text-blue-600 hover:underline">Having trouble signing in?</Link>
+                    <Link href="/reset-password" className="text-sm font-medium text-green-600 hover:underline">Having trouble signing in?</Link>
                   </div>
                   <input id="password" type="password" className="form-input w-full text-gray-800" placeholder="Enter your password" required />
                 </div>
@@ -46,7 +46,7 @@ export default function SignIn() {
               </div>
               <div className="flex flex-wrap -mx-3 mt-6">
                 <div className="w-full px-3">
-                  <button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full">Sign in</button>
+                  <button className="btn text-white bg-green-600 hover:bg-green-700 w-full">Sign in</button>
                 </div>
               </div>
             </form>
@@ -78,7 +78,7 @@ export default function SignIn() {
               </div>
             </form>
             <div className="text-gray-600 text-center mt-6">
-              Don't you have an account? <Link href="/signup" className="text-blue-600 hover:underline transition duration-150 ease-in-out">Sign up</Link>
+              Don't you have an account? <Link href="/signup" className="text-green-600 hover:underline transition duration-150 ease-in-out">Sign up</Link>
             </div>
           </div>
 
