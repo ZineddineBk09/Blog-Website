@@ -1,6 +1,8 @@
+'use client'
 import VideoThumb from "@/public/images/hero-image.jpg";
 import ModalVideo from "@/components/modal-video";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -76,20 +78,23 @@ export default function Hero() {
                 data-aos-delay="300"
               >
                 <div>
-                  <a
+                  <Link
                     className="btn text-white bg-green-600 hover:bg-green-700 w-full mb-4 sm:w-auto sm:mb-0"
-                    href="#0"
+                    href="/blogs"
                   >
-                    Start free trial
-                  </a>
+                    Read our blogs
+                  </Link>
                 </div>
                 <div>
-                  <a
+                  <button
                     className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
-                    href="#0"
+                    // on click scroll to explore
+                    onClick={() => {
+                      document.getElementById("explore")?.scrollIntoView({ behavior: "smooth" });
+                    }}
                   >
                     Learn more
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

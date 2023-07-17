@@ -85,11 +85,11 @@ export default function Testimonials() {
                   <Image className="relative rounded-full" src={TestimonialImage} width={96} height={96} alt="Testimonial 01" />
                 </div>
                 <blockquote className="text-xl font-medium mb-4">
-                  “ I love this product and would recommend it to anyone. Could be not easier to use, and our multiple websites are wonderful. We get nice comments all the time. “
+                  “ Discovering this blog has been a game-changer for me! The articles are insightful, well-researched, and filled with practical tips. Thanks to this blog, I've transformed from a novice plant lover to a confident green thumb. Highly recommended! “
                 </blockquote>
                 <cite className="block font-bold text-lg not-italic mb-1">Darya Finger</cite>
                 <div className="text-gray-600">
-                  <span>CEO & Co-Founder</span> <a className="text-green-600 hover:underline" href="#0">@Dropbox</a>
+                  <span>CEO & Co-Founder</span> <a className="text-green-600 hover:underline" href="#0">@Comapny</a>
                 </div>
               </div>
 

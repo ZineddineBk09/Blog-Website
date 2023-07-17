@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
-import FeaturesBg from "@/public/images/features-bg.png";
+import FeaturesBg from "@/public/images/aloe vera.jpg";
 import FeaturesElement from "@/public/images/features-element.png";
 
 export default function Features() {
@@ -21,7 +21,7 @@ export default function Features() {
   }, []);
 
   return (
-    <section className="relative">
+    <section className="relative" id="explore">
       {/* Section background (needs .relative class on parent and next sibling elements) */}
       <div
         className="absolute inset-0 bg-green-200 pointer-events-none mb-16"
@@ -49,11 +49,10 @@ export default function Features() {
               data-aos="fade-right"
             >
               <div className="md:pr-4 lg:pr-12 xl:pr-16 mb-8">
-                <h3 className="h3 mb-3">Powerful suite of tools</h3>
+                <h3 className="h3 mb-3">Rich and diverse set of blogs</h3>
                 <p className="text-xl text-gray-600">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa.
+                  Dive into our captivating blogs and discover the secrets of
+                  plant care, gardening tips, and the wonders of nature.
                 </p>
               </div>
               {/* Tabs buttons */}
@@ -72,11 +71,12 @@ export default function Features() {
                 >
                   <div>
                     <div className="font-bold leading-snug tracking-tight mb-1">
-                      Building the Simple ecosystem
+                      The Healing Power of Aloe Vera
                     </div>
                     <div className="text-gray-600">
-                      Take collaboration to the next level with security and
-                      administrative features built for teams.
+                      Discover the incredible benefits of Aloe Vera, known for
+                      its soothing properties and numerous health benefits.
+                      Explore its uses in skincare...
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -103,11 +103,12 @@ export default function Features() {
                 >
                   <div>
                     <div className="font-bold leading-snug tracking-tight mb-1">
-                      Building the Simple ecosystem
+                      Indoor Gardening: Bringing Nature Inside
                     </div>
                     <div className="text-gray-600">
-                      Take collaboration to the next level with security and
-                      administrative features built for teams.
+                      Learn how to create a thriving indoor garden and transform
+                      your living space into a green oasis. Discover the best
+                      plants for indoor environments...
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -137,11 +138,12 @@ export default function Features() {
                 >
                   <div>
                     <div className="font-bold leading-snug tracking-tight mb-1">
-                      Building the Simple ecosystem
+                      Exploring the World of Succulents
                     </div>
                     <div className="text-gray-600">
-                      Take collaboration to the next level with security and
-                      administrative features built for teams.
+                      Delve into the fascinating world of succulent plants,
+                      known for their unique shapes and low maintenance
+                      requirements. Uncover the secrets...
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -191,14 +193,6 @@ export default function Features() {
                         height="462"
                         alt="Features bg"
                       />
-                      <Image
-                        className="md:max-w-none absolute w-full left-0 transform animate-float"
-                        src={FeaturesElement}
-                        width={500}
-                        height="44"
-                        alt="Element"
-                        style={{ top: "30%" }}
-                      />
                     </div>
                   </Transition>
                   {/* Item 2 */}
@@ -222,15 +216,7 @@ export default function Features() {
                         width={500}
                         height="462"
                         alt="Features bg"
-                      />
-                      <Image
-                        className="md:max-w-none absolute w-full left-0 transform animate-float"
-                        src={FeaturesElement}
-                        width={500}
-                        height="44"
-                        alt="Element"
-                        style={{ top: "30%" }}
-                      />
+                      />{" "}
                     </div>
                   </Transition>
                   {/* Item 3 */}
@@ -255,14 +241,14 @@ export default function Features() {
                         height="462"
                         alt="Features bg"
                       />
-                      <Image
+                      {/* <Image
                         className="md:max-w-none absolute w-full left-0 transform animate-float"
                         src={FeaturesElement}
                         width={500}
                         height="44"
                         alt="Element"
                         style={{ top: "30%" }}
-                      />
+                      /> */}
                     </div>
                   </Transition>
                 </div>
