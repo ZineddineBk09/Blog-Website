@@ -1,13 +1,10 @@
 import Image from "next/image";
-import {
-  ArchiveBoxIcon,
-  ChartPieIcon,
-  CircleStackIcon,
-  PencilSquareIcon,
-  TrashIcon,
-  UsersIcon,
-} from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import React, { useEffect, useState } from "react";
+
 import Link from "next/link";
+import { fetchBlog } from "@/utils";
+import { Article } from "@/interfaces";
 
 const styles = {
   wrapper: `w-4/5 h-fit flex items-center justify-center flex-[3] mt-10`,
@@ -25,10 +22,22 @@ const styles = {
   bannerContainer: `h-[30rem] w-full grid center overflow-hidden mb-[2rem]`,
   title: `font-bold text-3xl`,
   subtitle: `font-mediumSerifItalic text-[1rem] text-gray-500`,
-  articleText: `font-mediumSerif text-[1.2rem] text-gray-600`,
+  articleText: `font-mediumSerif text-[1.2rem]`,
 };
 
-const BlogPost = ({ post }: any) => {
+const BlogPost = ({ postId }: { postId: string }) => {
+  // get blogs from firestore
+  const [post, setPost] = useState<Article>();
+
+  useEffect(() => {
+    const refresh = async () => {
+      await fetchBlog(postId, setPost);
+    };
+    refresh();
+  }, []);
+
+  console.log("Blog Post: ", post);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -48,11 +57,14 @@ const BlogPost = ({ post }: any) => {
                 <div>Venlo Seeds</div>
                 <div className={styles.postDetails}>
                   <span>
-                    {new Date(post.published).toLocaleString("en-US", {
-                      day: "numeric",
-                      month: "short",
-                    })}{" "}
-                    • {post.postLength}
+                    {new Date(post?.published.seconds * 1000).toLocaleString(
+                      "en-US",
+                      {
+                        day: "numeric",
+                        month: "short",
+                      }
+                    )}{" "}
+                    • {post?.postLength}
                   </span>
                   {/* <span className={styles.listenButton}>
                     <AiFillPlayCircle /> Listen
@@ -63,13 +75,13 @@ const BlogPost = ({ post }: any) => {
             <div className={styles.socials}>
               <Link href="/blogs/new-blog">
                 <PencilSquareIcon
-                  className="w-8 h-8 text-green-500 rounded-full p-1 hover:bg-gray-200"
+                  className="w-8 h-8 rounded-full p-1 hover:bg-gray-200"
                   title="Edit Blog"
                 />
               </Link>
               <div className={styles.space} />
               <TrashIcon
-                className="w-8 h-8 text-red-500  rounded-full p-1 hover:bg-gray-200"
+                className="w-8 h-8 rounded-full p-1 hover:bg-gray-200"
                 title="Delete Blog"
               />
             </div>
@@ -78,25 +90,31 @@ const BlogPost = ({ post }: any) => {
             <div className={styles.bannerContainer}>
               <Image
                 className={styles.image}
-                src={`/images/hero-image.jpg`}
+                src={post?.banner || "/images/default.png"}
                 alt="banner"
                 height={100}
                 width={100}
               />
             </div>
-            <h1 className={styles.title}>{post.title}</h1>
+            <h1 className={styles.title}>{post?.title}</h1>
             <h4 className={styles.subtitle}>
               <div>
                 Venlo Seeds,{" "}
-                {new Date(post.published).toLocaleString("en-US", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}
+                {new Date((post?.published.seconds || 0) * 1000).toLocaleString(
+                  "en-US",
+                  {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  }
+                )}
               </div>
-              <div>{post.brief}</div>
+              <div>{post?.brief}</div>
             </h4>
-            <div className={styles.articleText}>{post.body}</div>
+            <div
+              className={styles.articleText}
+              dangerouslySetInnerHTML={{ __html: post?.body || "" }}
+            />
           </div>
         </>
       </div>

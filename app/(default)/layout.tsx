@@ -25,7 +25,6 @@ export default function DefaultLayout({
     <>
       <main className="grow pt-16 md:pt-20">{children}</main>
 
-      <Footer />
       <p className="w-full text-center my-3 text-gray-600">
         Developed by{" "}
         <Link
