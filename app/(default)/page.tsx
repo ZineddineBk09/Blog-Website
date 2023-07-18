@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Home - Simple',
+  title: 'Home | Venlo Seeds',
   description: 'Page description',
 }
 
