@@ -79,6 +79,44 @@ module.exports = {
       },
       fontFamily: {
         inter: ['var(--font-inter)', 'sans-serif'],
+        fontFamily: {
+          sans: [
+            'ui-sans-serif',
+            'system-ui',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            'Segoe UI',
+            'Roboto',
+            'Helvetica Neue',
+            'Arial',
+            'Noto Sans',
+            'sans-serif',
+            'Apple Color Emoji',
+            'Segoe UI Emoji',
+            'Segoe UI Symbol',
+            'Noto Color Emoji',
+          ],
+          serif: [
+            'ui-serif',
+            'Georgia',
+            'Cambria',
+            'Times New Roman',
+            'Times',
+            'serif',
+          ],
+          mono: [
+            'ui-monospace',
+            'SFMono-Regular',
+            'Menlo',
+            'Monaco',
+            'Consolas',
+            'Liberation Mono',
+            'Courier New',
+            'monospace',
+          ],
+          mediumSerifItalic: ['CharterItalic'],
+          mediumSerif: ['Charter'],
+        },
       },
       fontSize: {
         xs: '0.75rem',
@@ -143,6 +181,7 @@ module.exports = {
       zIndex: {
         '-1': '-1',
       },
+
     },
   },
   plugins: [
