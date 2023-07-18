@@ -1,7 +1,7 @@
 import { auth, firestore, googleProvider, storage } from "@/firebase/clientApp";
 import { signInWithPopup } from "firebase/auth";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { getDownloadURL, ref } from "firebase/storage";
+import { deleteObject, getDownloadURL, ref } from "firebase/storage";
 
 const handleUserAuth = async () => {
   const user = signInWithPopup(auth, googleProvider)
@@ -80,4 +80,10 @@ export const fetchBlog = async (
   } catch (error) {
     console.log("Error fetching blog: ", error);
   }
+};
+
+export const deleteBlogBanner = async (id: string) => {
+  const storageRef = ref(storage, `blogs/${id}`);
+  // Delete the image from Firebase Storage
+  await deleteObject(storageRef);
 };

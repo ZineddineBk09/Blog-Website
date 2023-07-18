@@ -3,6 +3,7 @@ import PostCard from "@/components/posts/PostCard";
 import { blogs } from "@/data";
 import { fetchBlogs } from "@/utils";
 import React, { useEffect, useState } from "react";
+import LoadingSpinner from "../LoadingSpinner";
 
 const BlogPosts = () => {
   // get blogs from firestore
@@ -22,11 +23,9 @@ const BlogPosts = () => {
   return (
     <div className="w-10/12 flex flex-col items-start mx-auto pt-24">
       {loading ? (
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="animate-spin rounded-full h-24 w-24 mb-6 border-t-2 border-b-2 border-green-600"></div>
-        </div>
+        <LoadingSpinner />
       ) : (
-        blogs.map((blog) => <PostCard post={blog} />)
+        blogs.map((blog) => <PostCard post={blog} key={blog.id} />)
       )}
     </div>
   );

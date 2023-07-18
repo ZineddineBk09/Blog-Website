@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { fetchBlog } from "@/utils";
 import { Article } from "@/interfaces";
+import LoadingSpinner from "../LoadingSpinner";
+import DeleteModal from "../modals/DeleteModal";
 
 const styles = {
   wrapper: `w-4/5 h-fit flex items-center justify-center flex-[3] mt-10`,
@@ -28,16 +30,17 @@ const styles = {
 const BlogPost = ({ postId }: { postId: string }) => {
   // get blogs from firestore
   const [post, setPost] = useState<Article>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const refresh = async () => {
+      setLoading(true);
       await fetchBlog(postId, setPost);
+      setLoading(false);
     };
     refresh();
   }, []);
-
-  console.log("Blog Post: ", post);
-
+  if (loading) return <LoadingSpinner />;
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -80,10 +83,7 @@ const BlogPost = ({ postId }: { postId: string }) => {
                 />
               </Link>
               <div className={styles.space} />
-              <TrashIcon
-                className="w-8 h-8 rounded-full p-1 hover:bg-gray-200"
-                title="Delete Blog"
-              />
+              <DeleteModal id={post?.id} />
             </div>
           </div>
           <div className={styles.blogPostContainer}>
