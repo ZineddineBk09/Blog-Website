@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -24,7 +23,7 @@ export default function DefaultLayout({
 
   return (
     <>
-      <main className="grow">{children}</main>
+      <main className="grow pt-16 md:pt-20">{children}</main>
 
       <Footer />
       <p className="w-full text-center my-3 text-gray-600">
