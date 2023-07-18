@@ -9,10 +9,13 @@ export interface BlogPost {
 export interface Article {
   id: string;
   banner: string;
-  body?: string;
+  body: string;
   brief: string;
   category: string;
   postLength: string;
-  published: Date;
+  published: {
+    seconds: number;
+    nanoseconds: number;
+  };
   title: string;
 }

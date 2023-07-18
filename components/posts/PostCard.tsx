@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Article } from "@/interfaces";
 
 const styles = {
-  wrapper: `max-w-[46rem] h-[10rem] flex items-center gap-[1rem] cursor-pointer`,
+  wrapper: `max-w-[46rem] w-full h-[10rem] flex items-center justify-between gap-[1rem] cursor-pointer`,
   postDetails: `flex-[2.5] flex flex-col`,
   authorContainer: `flex gap-[.4rem]`,
   authorName: `font-semibold`,
@@ -15,7 +15,7 @@ const styles = {
   articleDetails: `my-2 text-[.8rem]`,
   bookmarkContainer: `cursor-pointer`,
   category: `bg-[#F2F3F2] p-1 rounded-full`,
-  thumbnailContainer: `flex-1`,
+  thumbnailContainer: `flex-1 `,
 };
 
 const PostCard = ({ post }: { post: Article }) => {
@@ -40,10 +40,10 @@ const PostCard = ({ post }: { post: Article }) => {
           <div className={styles.briefing}>{post.brief}</div>
           <div className={styles.detailsContainer}>
             <span className={styles.articleDetails}>
-              {new Date(post.published).toLocaleString("en-US", {
+              {new Date(post.published.seconds * 1000).toLocaleString("en-US", {
                 day: "numeric",
                 month: "short",
-              })}
+              })}{" "}
               • {post.postLength} •{" "}
               <span className={styles.category}>{post.category}</span>
             </span>
@@ -51,7 +51,7 @@ const PostCard = ({ post }: { post: Article }) => {
         </div>
         <div className={styles.thumbnailContainer}>
           <Image
-            src={post?.banner || ""}
+            src={post?.banner || "default.png"}
             alt="thumbnail"
             height={100}
             width={100}

@@ -1,16 +1,15 @@
-export const metadata = {
-  title: blogs[0].title + " | " + "Venlo Seeds",
-  description: blogs[0].body,
-};
-
+"use client";
 import BlogPost from "@/components/blogs/BlogPost";
-import { blogs } from "@/data";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const BlogArticle = () => {
+  const path = usePathname();
+  const id = path.split("/")[2];
+
   return (
     <main>
-      <BlogPost post={blogs[0]} />
+      <BlogPost postId={id} />
     </main>
   );
 };
