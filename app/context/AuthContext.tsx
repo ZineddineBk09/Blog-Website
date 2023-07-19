@@ -8,6 +8,9 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updatePassword,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
@@ -61,12 +64,37 @@ export function AuthProvider({ children }: any) {
         }
       );
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
 
   const logOut = () => {
     signOut(auth);
+  };
+
+  const changePassword = async (oldPassword: string, newPassword: string) => {
+    try {
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        // Re-authenticate the user with their old password
+        const credentials = EmailAuthProvider.credential(
+          currentUser?.email as string,
+          oldPassword
+        );
+        await reauthenticateWithCredential(currentUser, credentials);
+
+        // Update the user's password to the new one
+        await updatePassword(currentUser, newPassword);
+        console.log("Password changed successfully");
+
+        // Log out the user and send them to the login page
+        logOut();
+        router.push("/signin");
+      }
+      console.log("currentUser", currentUser);
+    } catch (err) {
+      throw err;
+    }
   };
 
   useEffect(() => {
@@ -78,7 +106,14 @@ export function AuthProvider({ children }: any) {
 
   return (
     <AuthContext.Provider
-      value={{ user, googleSignIn, logOut, credentialsSignIn, signUp }}
+      value={{
+        user,
+        googleSignIn,
+        logOut,
+        credentialsSignIn,
+        signUp,
+        changePassword,
+      }}
     >
       {children}
     </AuthContext.Provider>

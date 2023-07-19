@@ -7,6 +7,7 @@ import { Fragment } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const BlogPosts = ({
   nbBlogs = 0,
@@ -49,7 +50,7 @@ const AutoComplete = ({ blogs }: { blogs: any[] }) => {
   const [selected, setSelected] = useState(blogs[0]);
   const [query, setQuery] = useState("");
 
-  const filteredPeople =
+  const filteredBlogs =
     query === ""
       ? blogs
       : blogs.filter((blog) =>
@@ -88,12 +89,12 @@ const AutoComplete = ({ blogs }: { blogs: any[] }) => {
             afterLeave={() => setQuery("")}
           >
             <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {filteredPeople.length === 0 && query !== "" ? (
+              {filteredBlogs.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                   Nothing found.
                 </div>
               ) : (
-                filteredPeople.map((blog) => (
+                filteredBlogs.map((blog) => (
                   <Combobox.Option
                     key={blog.id}
                     className={({ active }) =>
@@ -101,10 +102,10 @@ const AutoComplete = ({ blogs }: { blogs: any[] }) => {
                         active ? "bg-teal-600 text-gray-700" : "text-gray-900"
                       }`
                     }
-                    value={blog}
+                    value={blog.title}
                   >
                     {({ selected, active }) => (
-                      <>
+                      <Link href={`/blogs/${blog.id}`}>
                         <span
                           className={`block truncate ${
                             selected ? "font-medium" : "font-normal"
@@ -121,7 +122,7 @@ const AutoComplete = ({ blogs }: { blogs: any[] }) => {
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
                           </span>
                         ) : null}
-                      </>
+                      </Link>
                     )}
                   </Combobox.Option>
                 ))

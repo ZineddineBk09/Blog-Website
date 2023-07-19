@@ -24,17 +24,6 @@ export default function DefaultLayout({
   return (
     <>
       <main className="grow pt-16 md:pt-20">{children}</main>
-
-      <p className="w-full text-center my-3 text-gray-600">
-        Developed by{" "}
-        <Link
-          href="https://www.linkedin.com/in/zineddine-benkhaled-b9b1a8195/"
-          target="_blank"
-          className="text-green-600 transition-all duration-200 hover:underline"
-        >
-          Zineddine Benkhaled
-        </Link>
-      </p>
     </>
   );
 }

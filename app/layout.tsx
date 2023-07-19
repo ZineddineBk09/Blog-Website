@@ -6,6 +6,7 @@ import Header from "@/components/ui/header";
 import Banner from "@/components/banner";
 import { AuthProvider } from "./context/AuthContext";
 import Footer from "@/components/ui/footer";
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,6 +37,17 @@ export default function RootLayout({
 
           {/* <Banner /> */}
           <Footer />
+
+          <p className="w-full text-center my-3 text-gray-600">
+            Developed by{" "}
+            <Link
+              href="https://www.linkedin.com/in/zineddine-benkhaled-b9b1a8195/"
+              target="_blank"
+              className="text-green-600 transition-all duration-200 hover:underline"
+            >
+              Zineddine Benkhaled
+            </Link>
+          </p>
         </div>
       </body>
     </html>
