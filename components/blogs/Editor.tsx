@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-const TextEditor = ({ setBody, body }: any) => {
+const TextEditor = ({ setBody, body = "" }: any) => {
   const editorRef = useRef<any>(null);
 
   const handleEditorChange = (content: any, editor: any) => {
@@ -29,7 +29,7 @@ const TextEditor = ({ setBody, body }: any) => {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
         onEditorChange={handleEditorChange}
-        value="<p>This is the initial content of the editor</p>"
+        value={body}
       />
       {/* <button onClick={log}>Log editor content</button> */}
     </div>
