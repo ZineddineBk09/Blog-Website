@@ -30,12 +30,12 @@ const BlogPost = ({ postId }: { postId: string }) => {
   const [post, setPost] = useState<Article>();
   const [loading, setLoading] = useState<boolean>(false);
 
+  const refresh = async () => {
+    setLoading(true);
+    await fetchBlog(postId, setPost);
+    setLoading(false);
+  };
   useEffect(() => {
-    const refresh = async () => {
-      setLoading(true);
-      await fetchBlog(postId, setPost);
-      setLoading(false);
-    };
     refresh();
   }, []);
 
@@ -67,20 +67,11 @@ const BlogPost = ({ postId }: { postId: string }) => {
                     })}{" "}
                     • {post?.postLength}
                   </span>
-                  {/* <span className={styles.listenButton}>
-                    <AiFillPlayCircle /> Listen
-                  </span> */}
                 </div>
               </div>
             </div>
             <div className={styles.socials}>
-              {/* <Link href="/blogs/new-blog">
-                <PencilSquareIcon
-                  className="w-8 h-8 rounded-full p-1 hover:bg-gray-200"
-                  title="Edit Blog"
-                />
-              </Link> */}
-              <UpdateModal post={post} />
+              <UpdateModal post={post} refresh={refresh} />
               <div className={styles.space} />
               <DeleteModal id={postId} />
             </div>
