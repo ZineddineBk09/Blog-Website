@@ -12,7 +12,6 @@ const handleUserAuth = async () => {
     .catch((error) => {
       console.error(error.message);
     });
-  console.log(user);
 };
 
 export const fetchBlogs = async (
