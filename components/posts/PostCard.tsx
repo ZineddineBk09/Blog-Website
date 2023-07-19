@@ -19,7 +19,6 @@ const styles = {
 };
 
 const PostCard = ({ post }: { post: Article }) => {
-  console.log("Post: ", post);
   return (
     <Link href={`/blogs/${post.id}`}>
       <div className={styles.wrapper}>
