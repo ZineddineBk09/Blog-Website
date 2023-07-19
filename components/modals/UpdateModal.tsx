@@ -68,7 +68,6 @@ export default function UpdateModal({ post, refresh }: Props) {
       setLoading(true);
       // check if banner is updated
       if (post.banner !== bannerUrl) {
-        console.log("Banner is updated");
         await handleUploadImage(post.id.toString());
       }
 
@@ -100,7 +99,7 @@ export default function UpdateModal({ post, refresh }: Props) {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log("post: ", post);
+
   React.useEffect(() => {
     if (!post) return;
     formik.setFieldValue("title", post.title);
