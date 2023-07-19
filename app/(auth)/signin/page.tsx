@@ -1,11 +1,12 @@
-export const metadata = {
-  title: "Sign In | Venlo Seeds",
-  description:
-    "Sign in to your Venlo Seeds account and gain access to your personalized dashboard. Manage your saved plants, order history, and explore a wealth of gardening resources tailored just for you.",
-};
-
+"use client";
+import { userAuth } from "@/app/context/AuthContext";
 import LoginForm from "@/components/login/LoginForm";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 export default function SignIn() {
+  const { user } = userAuth();
+  const router = useRouter();
+  if (user) router.push("/");
   return <LoginForm />;
 }
