@@ -55,7 +55,6 @@ export function AuthProvider({ children }: any) {
     try {
       await createUserWithEmailAndPassword(auth, email, password).then(
         (userDoc) => {
-          console.log(userDoc);
           setUser(userDoc);
         }
       );
