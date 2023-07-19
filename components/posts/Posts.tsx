@@ -18,7 +18,6 @@ const BlogPosts = () => {
     refresh();
   }, []);
 
-  console.log("Blogs: ", blogs);
   return (
     <div className="w-11/12 flex flex-col items-start mx-auto pt-24">
       {loading ? (
