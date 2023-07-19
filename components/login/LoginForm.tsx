@@ -21,7 +21,6 @@ const LoginForm = () => {
         .min(8, "Password is too short"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       credentialsSignIn(values);
     },
   });
