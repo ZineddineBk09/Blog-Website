@@ -12,7 +12,7 @@ const BlogArticle = () => {
   return (
     <main className="w-full flex flex-col items-center justify-between mt-16 lg:flex-row lg:items-start">
       <BlogPost postId={id} />
-      <div className="w-[70%] flex flex-col items-start lg:w-[30%]">
+      <div className="w-[80%] flex flex-col items-start lg:w-[30%]">
         <BlogPosts noSearch />
       </div>
     </main>

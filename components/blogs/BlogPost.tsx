@@ -8,8 +8,8 @@ import UpdateModal from "../modals/UpdateModal";
 import { userAuth } from "@/app/context/AuthContext";
 
 const styles = {
-  wrapper: `w-[65%] h-fit flex items-center justify-center flex-[3]`,
-  content: `h-fit p-8`,
+  wrapper: `w-[80%] h-fit flex items-center justify-center flex-[3] lg:w-[65%]`,
+  content: `h-fit p-2 lg:p-8`,
   referencesContainer: `flex justify-between items-center mb-[1.2rem]`,
   authorContainer: `flex gap-[1rem]`,
   authorProfileImageContainer: `h-[3rem] w-[3rem] grid center rounded-full overflow-hidden`,
