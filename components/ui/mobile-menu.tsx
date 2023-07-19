@@ -98,7 +98,7 @@ export default function MobileMenu() {
             {user && (
               <li>
                 <Link
-                  href="/blogs/new-blog"
+                  href="/new-blog"
                   className="w-full justify-center py-2 font-medium text-gray-600 hover:text-gray-900 px-5 flex items-center transition duration-150 ease-in-out"
                 >
                   Write

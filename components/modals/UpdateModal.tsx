@@ -113,12 +113,9 @@ export default function UpdateModal({ post, refresh }: Props) {
 
   return (
     <div>
-      <Tooltip title="تعديل">
+      <Tooltip title="Edit Blog">
         <button onClick={handleClickOpen}>
-          <PencilSquareIcon
-            className="w-8 h-8 rounded-full p-1 hover:bg-gray-200"
-            title="Edit Blog"
-          />
+          <PencilSquareIcon className="w-8 h-8 rounded-full p-1 hover:bg-gray-200" />
         </button>
       </Tooltip>
       <Dialog
@@ -142,7 +139,7 @@ export default function UpdateModal({ post, refresh }: Props) {
             ) : (
               <form
                 onSubmit={formik.handleSubmit}
-                className="grid grid-cols-1 gap-2 md:grid-cols-2"
+                className="grid grid-cols-1 gap-2 lg:grid-cols-2"
               >
                 {/* Banner */}
                 <div className="flex flex-wrap -mx-3 mb-4 col-span-2 relative">
