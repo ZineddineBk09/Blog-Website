@@ -3,13 +3,18 @@ import PostCard from "@/components/posts/PostCard";
 import { fetchBlogs } from "@/utils";
 import React, { useEffect, useState } from "react";
 import LoadingSpinner from "../LoadingSpinner";
-import SearchBar from "../SearchBar";
 import { Fragment } from "react";
 import { Combobox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { CheckIcon } from "@heroicons/react/20/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-const BlogPosts = () => {
+const BlogPosts = ({
+  nbBlogs = 0,
+  noSearch = false,
+}: {
+  nbBlogs?: number;
+  noSearch?: boolean;
+}) => {
   // get blogs from firestore
   const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,28 +29,21 @@ const BlogPosts = () => {
   }, []);
 
   return (
-    <div className="w-11/12 flex items-start justify-between mx-auto pt-24">
-      <div className="w-1/2">
+    <div className="w-11/12 flex flex-col-reverse items-center justify-between mx-auto pt-24 lg:flex-row lg:items-start">
+      <div className="w-full">
         {loading ? (
           <LoadingSpinner />
         ) : (
-          blogs.map((blog) => <PostCard post={blog} key={blog.id} />)
+          blogs
+            .slice(0, nbBlogs === 0 ? blogs.length : nbBlogs)
+            .map((blog) => <PostCard post={blog} key={blog.id} />)
         )}
       </div>
 
-      <AutoComplete blogs={blogs} />
+      {!noSearch && <AutoComplete blogs={blogs} />}
     </div>
   );
 };
-
-const peple = [
-  { id: 1, name: "Wade Cooper" },
-  { id: 2, name: "Arlene Mccoy" },
-  { id: 3, name: "Devon Webb" },
-  { id: 4, name: "Tom Cook" },
-  { id: 5, name: "Tanya Fox" },
-  { id: 6, name: "Hellen Schmidt" },
-];
 
 const AutoComplete = ({ blogs }: { blogs: any[] }) => {
   const [selected, setSelected] = useState(blogs[0]);
@@ -62,7 +60,7 @@ const AutoComplete = ({ blogs }: { blogs: any[] }) => {
         );
 
   return (
-    <div className="w-1/2 px-10">
+    <div className="w-full max-w-2xl mb-6 px-10 lg:w-1/2 lg:mb-0">
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">

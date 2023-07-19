@@ -3,7 +3,7 @@ import React from "react";
 
 const SearchBar = () => {
   return (
-    <div className="flex flex-wrap -mx-3 mb-4 h-12">
+    <div className="flex flex-wrap -mx-3 h-12">
       <div className="w-full flex items-center px-3">
         <input
           id="search"

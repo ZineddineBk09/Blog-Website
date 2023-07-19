@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Article } from "@/interfaces";
 
 const styles = {
-  wrapper: `max-w-[46rem] w-full h-[10rem] flex items-center justify-between gap-[1rem] cursor-pointer`,
+  wrapper: `max-w-[46rem] w-full h-fit flex items-center justify-between gap-[1rem] mb-3 cursor-pointer`,
   postDetails: `flex-[2.5] flex flex-col`,
   authorContainer: `flex gap-[.4rem]`,
   authorName: `font-semibold`,
