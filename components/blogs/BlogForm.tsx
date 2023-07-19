@@ -52,7 +52,6 @@ const BlogForm = () => {
         published: new Date(),
       })
         .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
           handleUploadImage(docRef.id);
           setLoading(false);
           navigate.push("/blogs");
