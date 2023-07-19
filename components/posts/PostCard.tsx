@@ -15,7 +15,7 @@ const styles = {
   articleDetails: `my-2 text-[.8rem]`,
   bookmarkContainer: `cursor-pointer`,
   category: `bg-[#F2F3F2] p-1 rounded-full`,
-  thumbnailContainer: `flex-1 `,
+  thumbnailContainer: `flex-1`,
 };
 
 const PostCard = ({ post }: { post: Article }) => {

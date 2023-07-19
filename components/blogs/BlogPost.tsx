@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
-
-import Link from "next/link";
 import { fetchBlog } from "@/utils";
 import { Article } from "@/interfaces";
 import LoadingSpinner from "../LoadingSpinner";
 import DeleteModal from "../modals/DeleteModal";
+import UpdateModal from "../modals/UpdateModal";
 
 const styles = {
   wrapper: `w-4/5 h-fit flex items-center justify-center flex-[3] mt-10`,
@@ -40,6 +38,7 @@ const BlogPost = ({ postId }: { postId: string }) => {
     };
     refresh();
   }, []);
+
   if (loading) return <LoadingSpinner />;
   return (
     <div className={styles.wrapper}>
@@ -60,13 +59,12 @@ const BlogPost = ({ postId }: { postId: string }) => {
                 <div>Venlo Seeds</div>
                 <div className={styles.postDetails}>
                   <span>
-                    {new Date(post?.published.seconds * 1000).toLocaleString(
-                      "en-US",
-                      {
-                        day: "numeric",
-                        month: "short",
-                      }
-                    )}{" "}
+                    {new Date(
+                      (post?.published.seconds || 0) * 1000
+                    ).toLocaleString("en-US", {
+                      day: "numeric",
+                      month: "short",
+                    })}{" "}
                     • {post?.postLength}
                   </span>
                   {/* <span className={styles.listenButton}>
@@ -76,14 +74,15 @@ const BlogPost = ({ postId }: { postId: string }) => {
               </div>
             </div>
             <div className={styles.socials}>
-              <Link href="/blogs/new-blog">
+              {/* <Link href="/blogs/new-blog">
                 <PencilSquareIcon
                   className="w-8 h-8 rounded-full p-1 hover:bg-gray-200"
                   title="Edit Blog"
                 />
-              </Link>
+              </Link> */}
+              <UpdateModal post={post} />
               <div className={styles.space} />
-              <DeleteModal id={post?.id} />
+              <DeleteModal id={postId} />
             </div>
           </div>
           <div className={styles.blogPostContainer}>

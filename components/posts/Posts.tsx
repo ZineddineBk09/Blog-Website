@@ -1,6 +1,5 @@
 "use client";
 import PostCard from "@/components/posts/PostCard";
-import { blogs } from "@/data";
 import { fetchBlogs } from "@/utils";
 import React, { useEffect, useState } from "react";
 import LoadingSpinner from "../LoadingSpinner";
@@ -21,7 +20,7 @@ const BlogPosts = () => {
 
   console.log("Blogs: ", blogs);
   return (
-    <div className="w-10/12 flex flex-col items-start mx-auto pt-24">
+    <div className="w-11/12 flex flex-col items-start mx-auto pt-24">
       {loading ? (
         <LoadingSpinner />
       ) : (
