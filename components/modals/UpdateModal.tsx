@@ -8,11 +8,10 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { Tooltip } from "@mui/material";
 import { firestore, storage } from "@/firebase/clientApp";
-import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import Image from "next/image";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
 import TextEditor from "../blogs/Editor";
 import { Article } from "@/interfaces";
 import LoadingSpinner from "../LoadingSpinner";
@@ -27,14 +26,13 @@ const Transition = React.forwardRef(function Transition(
 });
 
 type Props = {
-  post: Article;
+  post: Article | any;
   refresh: () => void;
 };
 
 export default function UpdateModal({ post, refresh }: Props) {
   const [loading, setLoading] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const navigate = useRouter();
   // handle banner and body separately
   const [body, setBody] = React.useState("");
   const [banner, setBanner] = React.useState<File>();

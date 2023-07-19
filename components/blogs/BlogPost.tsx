@@ -12,7 +12,7 @@ const styles = {
   referencesContainer: `flex justify-between items-center mt-[2.2rem] mb-[1.2rem]`,
   authorContainer: `flex gap-[1rem]`,
   authorProfileImageContainer: `h-[3rem] w-[3rem] grid center rounded-full overflow-hidden`,
-  image: `object-contain w-full `,
+  image: `object-cover w-full `,
   column: `flex-1 flex flex-col justify-center`,
   postDetails: `flex gap-[.2rem] text-[#787878]`,
   listenButton: `flex items-center gap-[.2rem] text-[#1A8917]`,
@@ -53,6 +53,7 @@ const BlogPost = ({ postId }: { postId: string }) => {
                   alt="author"
                   width={100}
                   height={100}
+                  quality={100}
                 />
               </div>
               <div className={styles.column}>
