@@ -9,6 +9,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 interface User {
   id: string;
@@ -20,6 +21,7 @@ export const AuthContext = createContext<any>(null);
 
 export function AuthProvider({ children }: any) {
   const [user, setUser] = useState<any>(null);
+  const router = useRouter();
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -36,8 +38,8 @@ export function AuthProvider({ children }: any) {
     try {
       await signInWithEmailAndPassword(auth, email, password).then(
         (userDoc) => {
-          console.log(userDoc);
           setUser(userDoc);
+          router.push("/blogs");
         }
       );
     } catch (err) {
@@ -70,7 +72,6 @@ export function AuthProvider({ children }: any) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
     });
     return () => unsubscribe();
   }, [user]);

@@ -5,6 +5,7 @@ import { Article } from "@/interfaces";
 import LoadingSpinner from "../LoadingSpinner";
 import DeleteModal from "../modals/DeleteModal";
 import UpdateModal from "../modals/UpdateModal";
+import { userAuth } from "@/app/context/AuthContext";
 
 const styles = {
   wrapper: `w-4/5 h-fit flex items-center justify-center flex-[3] mt-10`,
@@ -26,6 +27,7 @@ const styles = {
 };
 
 const BlogPost = ({ postId }: { postId: string }) => {
+  const { user } = userAuth();
   // get blogs from firestore
   const [post, setPost] = useState<Article>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -71,11 +73,13 @@ const BlogPost = ({ postId }: { postId: string }) => {
                 </div>
               </div>
             </div>
-            <div className={styles.socials}>
-              <UpdateModal post={post} refresh={refresh} />
-              <div className={styles.space} />
-              <DeleteModal id={postId} />
-            </div>
+            {user && (
+              <div className={styles.socials}>
+                <UpdateModal post={post} refresh={refresh} />
+                <div className={styles.space} />
+                <DeleteModal id={postId} />
+              </div>
+            )}
           </div>
           <div className={styles.blogPostContainer}>
             <div className={styles.bannerContainer}>

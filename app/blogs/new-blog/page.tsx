@@ -8,9 +8,9 @@ import React from "react";
 
 const NewBlogPage = () => {
   return (
-    <div className="">
+    <>
       <BlogForm />
-    </div>
+    </>
   );
 };
 
