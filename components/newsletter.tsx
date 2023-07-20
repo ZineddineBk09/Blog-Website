@@ -1,6 +1,32 @@
+"use client";
 import Image from "next/image";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { addEmailToNewsletter } from "@/utils";
+import { useState } from "react";
+import Banner from "./banner";
 
 export default function Newsletter() {
+  const [message, setMessage] = useState("");
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .required("You must enter your email")
+        .email("Please enter a valid email address"),
+    }),
+    onSubmit: async (values) => {
+      try {
+        await addEmailToNewsletter(values.email, setMessage);
+      } catch (err: any) {
+        console.error("Newsletter error: ", err);
+      }
+    },
+  });
+
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -37,20 +63,24 @@ export default function Newsletter() {
                 </p>
 
                 {/* CTA form */}
-                <form className="w-full lg:w-auto">
+                <form
+                  onSubmit={formik.handleSubmit}
+                  className="w-full lg:w-auto"
+                >
                   <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:mx-0">
                     <input
                       type="email"
                       className="form-input w-full appearance-none bg-gray-100 border border-gray-200 focus:border-gray-600 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-black placeholder-gray-500"
                       placeholder="Your email…"
                       aria-label="Your email…"
+                      {...formik.getFieldProps("email")}
                     />
-                    <a
+                    <button
                       className="btn text-white bg-black shadow hover:bg-opacity-90"
-                      href="#0"
+                      type="submit"
                     >
                       Subscribe
-                    </a>
+                    </button>
                   </div>
                   {/* Success message */}
                   {/* <p className="text-sm text-gray-400 mt-3">Thanks for subscribing!</p> */}
@@ -63,6 +93,7 @@ export default function Newsletter() {
           </div>
         </div>
       </div>
+      {message && <Banner message={message} />}
     </section>
   );
 }

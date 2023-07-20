@@ -1,6 +1,16 @@
 import { auth, firestore, googleProvider, storage } from "@/firebase/clientApp";
+import { Article } from "@/interfaces";
 import { signInWithPopup } from "firebase/auth";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  limit,
+  query,
+  where,
+} from "firebase/firestore";
 import { deleteObject, getDownloadURL, ref } from "firebase/storage";
 
 const handleUserAuth = async () => {
@@ -85,4 +95,51 @@ export const deleteBlogBanner = async (id: string) => {
   const storageRef = ref(storage, `blogs/${id}`);
   // Delete the image from Firebase Storage
   await deleteObject(storageRef);
+};
+
+// add a new user email to newsletter collection
+export const addEmailToNewsletter = async (
+  email: string,
+  setMessage: React.Dispatch<React.SetStateAction<string>>
+) => {
+  try {
+    // check if email already exists
+    const q = query(
+      collection(firestore, "newsletter"),
+      where("email", "==", email)
+    );
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      setMessage("Email already exists");
+      return;
+    }
+
+    const coll = collection(firestore, "newsletter");
+    const docRef = await addDoc(coll, { email }).then((docRef) => {
+      return docRef;
+    });
+    setMessage("Email added successfully");
+    return docRef.id;
+  } catch (error) {
+    console.log("add document error: ", error);
+    setMessage("Error adding email");
+  }
+};
+
+export const getFirstThreeBlogs = async () => {
+  try {
+    const blogsRef = collection(firestore, "blogs");
+    const blogsQuery = query(blogsRef, limit(3));
+    const querySnapshot = await getDocs(blogsQuery);
+
+    const blogs: Article[] = [];
+    querySnapshot.forEach(async (doc) => {
+      blogs.push({ ...(doc.data() as Article), id: doc.id });
+    });
+
+    return blogs;
+  } catch (error) {
+    console.error("Error retrieving blogs:", error);
+    return [];
+  }
 };

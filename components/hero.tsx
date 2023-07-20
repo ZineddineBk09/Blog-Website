@@ -1,6 +1,4 @@
 "use client";
-import VideoThumb from "@/public/images/hero-image.jpg";
-import ModalVideo from "@/components/modal-video";
 import Link from "next/link";
 
 export default function Hero() {
@@ -9,12 +7,10 @@ export default function Hero() {
       className="relative bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('/images/hero-img-no-bg.png')`,
-        // add a black overlay to the image
-        backgroundBlendMode: "overlay",
-        backgroundColor: "rgba(0,0,0,0.5)",
+        backgroundPosition: "top",
       }}
     >
-      <div className="absolute inset-0 "></div>
+      <div className="absolute inset-0 bg-green-500 bg-opacity-50 -z-1"></div>
 
       {/* Illustration behind hero content */}
       <div
@@ -54,7 +50,7 @@ export default function Hero() {
           {/* Section header */}
           <div className="text-left pb-12 md:pb-16">
             <h1
-              className="text-white text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4"
+              className="text-black text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4"
               data-aos="zoom-y-out"
             >
               Welcome To <br />
@@ -64,7 +60,7 @@ export default function Hero() {
             </h1>
             <div className="max-w-3xl mr-auto">
               <p
-                className="text-gray-300 mb-8 md:text-xl"
+                className="text-gray-600 mb-8 md:text-xl"
                 data-aos="zoom-y-out"
                 data-aos-delay="150"
               >
@@ -101,17 +97,6 @@ export default function Hero() {
               </div>
             </div>
           </div>
-
-          {/* Hero image */}
-          <ModalVideo
-            thumb={VideoThumb}
-            thumbWidth={768}
-            thumbHeight={432}
-            thumbAlt="Modal video thumbnail"
-            video="/videos/video.mp4"
-            videoWidth={1920}
-            videoHeight={1080}
-          />
         </div>
       </div>
     </section>

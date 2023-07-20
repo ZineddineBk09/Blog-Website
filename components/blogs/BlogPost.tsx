@@ -16,7 +16,6 @@ const styles = {
   image: `object-cover w-full `,
   column: `flex-1 flex flex-col justify-center`,
   postDetails: `flex gap-[.2rem] text-[#787878]`,
-  listenButton: `flex items-center gap-[.2rem] text-[#1A8917]`,
   socials: `flex gap-[1rem] text-[#787878] cursor-pointer`,
   space: `w-[.5rem]`,
   blogPostContainer: `flex flex-col gap-[1rem]`,
@@ -43,14 +42,16 @@ const BlogPost = ({ postId }: { postId: string }) => {
 
   if (loading) return <LoadingSpinner />;
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.content}>
+    <div className={`w-[80%] lg:w-[65%]`}>
+      <div className={`h-fit p-2 lg:p-8`}>
         <>
-          <div className={styles.referencesContainer}>
-            <div className={styles.authorContainer}>
-              <div className={styles.authorProfileImageContainer}>
+          <div className={`flex justify-between items-center mb-[1.2rem]`}>
+            <div className={`flex gap-[1rem]`}>
+              <div
+                className={`h-[3rem] w-[3rem] grid center rounded-full overflow-hidden`}
+              >
                 <Image
-                  className={styles.image}
+                  className={`object-cover w-full `}
                   src={`/images/logo.png`}
                   alt="author"
                   width={100}
@@ -58,9 +59,9 @@ const BlogPost = ({ postId }: { postId: string }) => {
                   quality={100}
                 />
               </div>
-              <div className={styles.column}>
+              <div className={`flex-1 flex flex-col justify-center`}>
                 <div>Venlo Seeds</div>
-                <div className={styles.postDetails}>
+                <div className={`flex gap-[.2rem] text-[#787878]`}>
                   <span>
                     {new Date(
                       (post?.published.seconds || 0) * 1000
@@ -74,25 +75,28 @@ const BlogPost = ({ postId }: { postId: string }) => {
               </div>
             </div>
             {user && (
-              <div className={styles.socials}>
+              <div className={`flex gap-[1rem] text-[#787878] cursor-pointer`}>
                 <UpdateModal post={post} refresh={refresh} />
                 <div className={styles.space} />
                 <DeleteModal id={postId} />
               </div>
             )}
           </div>
-          <div className={styles.blogPostContainer}>
-            <div className={styles.bannerContainer}>
+          <div className={`flex flex-col gap-[1rem]`}>
+            <div
+              className={`h-[30rem] w-full grid center overflow-hidden mb-[2rem]`}
+            >
               <Image
-                className={styles.image}
+                className={`object-cover w-full `}
                 src={post?.banner || "/images/default.png"}
                 alt="banner"
                 height={100}
                 width={100}
+                quality={100}
               />
             </div>
-            <h1 className={styles.title}>{post?.title}</h1>
-            <h4 className={styles.subtitle}>
+            <h1 className={`font-bold text-3xl`}>{post?.title}</h1>
+            <h4 className={`font-mediumSerifItalic text-[1rem] text-gray-500`}>
               <div>
                 Venlo Seeds,{" "}
                 {new Date((post?.published.seconds || 0) * 1000).toLocaleString(
@@ -107,7 +111,7 @@ const BlogPost = ({ postId }: { postId: string }) => {
               <div>{post?.brief}</div>
             </h4>
             <div
-              className={styles.articleText}
+              className={`text[1rem] lg:text-[1.2rem] w-full`}
               dangerouslySetInnerHTML={{ __html: post?.body || "" }}
             />
           </div>

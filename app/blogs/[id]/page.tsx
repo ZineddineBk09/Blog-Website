@@ -1,5 +1,4 @@
 "use client";
-import SearchBar from "@/components/SearchBar";
 import BlogPost from "@/components/blogs/BlogPost";
 import BlogPosts from "@/components/posts/Posts";
 import { usePathname } from "next/navigation";
