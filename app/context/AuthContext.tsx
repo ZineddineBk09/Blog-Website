@@ -85,13 +85,11 @@ export function AuthProvider({ children }: any) {
 
         // Update the user's password to the new one
         await updatePassword(currentUser, newPassword);
-        console.log("Password changed successfully");
 
         // Log out the user and send them to the login page
         logOut();
         router.push("/signin");
       }
-      console.log("currentUser", currentUser);
     } catch (err) {
       throw err;
     }
