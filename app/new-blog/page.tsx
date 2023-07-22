@@ -19,7 +19,6 @@ export default function NewBlogPage() {
   }, [user]);
 
   if (!user) {
-    console.log("user is not logged in");
     return <LoginForm />;
   }
   return (
