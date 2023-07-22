@@ -31,7 +31,6 @@ export default function Features() {
     getBlogs();
   }, []);
 
-  console.log("blogs: ", blogs);
 
   return (
     <section className="relative" id="explore">
